@@ -22,6 +22,7 @@ public class ActorController {
 	@GetMapping("actors")
 	public List<Actor> getActors() {
 
+		System.out.println("actors");
 		return actorRepository.findAll();
 
 	}
@@ -29,6 +30,7 @@ public class ActorController {
 	@GetMapping("actors/{id}")
 	public List<Actor> getActor(@PathVariable("id") final Integer id) {
 
+		System.out.println("actor");
 		return actorRepository.findById(id);
 
 	}
