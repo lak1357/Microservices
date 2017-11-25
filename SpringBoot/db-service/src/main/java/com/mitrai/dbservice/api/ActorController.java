@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mitrai.dbservice.ActorRepository;
+
 import com.mitrai.dbservice.model.Actor;
+import com.mitrai.dbservice.repository.ActorRepository;
 
 @RestController
 @RequestMapping("/db")

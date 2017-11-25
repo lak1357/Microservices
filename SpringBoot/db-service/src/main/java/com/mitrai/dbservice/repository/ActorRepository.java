@@ -1,4 +1,4 @@
-package com.mitrai.dbservice;
+package com.mitrai.dbservice.repository;
 
 import java.util.List;
 
