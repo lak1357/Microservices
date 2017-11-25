@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: peopleinfo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: peopleinfo
+        track: stable
+    spec:
+      containers:
+       - name: peopleinfo
+         image: "peopleinfo:v2"
+         ports:
+         - containerPort: 80
