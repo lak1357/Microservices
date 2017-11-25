@@ -1,0 +1,14 @@
+{
+  "name": "peopleinfo",
+  "version": "1.0.0",
+  "description": "People Information API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lakshitha Herath",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
