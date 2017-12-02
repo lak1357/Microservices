@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Start Building Dockerfile........'
-                docker build -f mynodeapp/Dockerfile -t lakshithah1/mynodeapp mynodeapp
+                sh 'docker build -f mynodeapp/Dockerfile -t lakshithah1/mynodeapp mynodeapp'
             }
         }
         stage('Test') {
