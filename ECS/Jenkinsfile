@@ -7,11 +7,12 @@ pipeline {
 
     agent any
 
-    //def IMAGE = 'mynodeapp:latest'
-    //def VERSION = 'latest'
+
 
     environment 
     {
+        IMAGE = 'mynodeapp:latest'
+        VERSION = 'latest'
         PROJECT = 'mynodeapp'
         ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
     }
