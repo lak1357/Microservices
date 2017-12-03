@@ -3,9 +3,9 @@ pipeline {
 
     environment 
     {
-        VERSION = 'latest'
+        VERSION = 'latest2'
         PROJECT = 'mynodeapp'
-        IMAGE = 'mynodeapp:latest'
+        IMAGE = 'mynodeapp:latest3'
         ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
     }
     stages {
