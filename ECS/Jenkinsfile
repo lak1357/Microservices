@@ -5,17 +5,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Start Building Dockerfile........'
-                sh 'docker build -f ECS/mynodeapp/Dockerfile -t lakshithah1/mynodeapp ECS/mynodeapp'
+                sh 'docker build -f ECS/mynodeapp/Dockerfile -t mynodeapp ECS/mynodeapp'
             }
         }
-        stage('Test') {
+        stage('Tag') {
             steps {
-                echo 'Testing..'
+                echo 'Tag Image........'
+                sh 'docker tag mynodeapp:latest 936825406282.dkr.ecr.ap-southeast-1.amazonaws.com/mynodeapp:latest'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Push Image to Registry.......'
             }
         }
     }
