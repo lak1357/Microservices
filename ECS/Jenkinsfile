@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script
                 {
-                    sh 'echo ${VERSION}'
-                    sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${IMAGE} ECS/mynodeapp'
+                    sh 'echo $VERSION'
+                    sh 'docker build -f ECS/mynodeapp/Dockerfile -t $IMAGE ECS/mynodeapp'
                 }
             }
         }
