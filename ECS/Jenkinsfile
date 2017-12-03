@@ -37,10 +37,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                script
-                {
+                    sh 'echo ${shortCommitHash}'
+                    sh 'echo ${BUILD_ID}'
                     sh 'docker build -f ECS/mynodeapp/Dockerfile -t $IMAGE ECS/mynodeapp'
-                }
             }
         }
         stage('Tag') {
