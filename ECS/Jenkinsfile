@@ -7,11 +7,12 @@ pipeline {
 
     agent any
 
+    def IMAGE = 'mynodeapp:latest'
+    def VERSION = 'latest'
+
     environment 
     {
-        VERSION = 'latest'
         PROJECT = 'mynodeapp'
-        IMAGE = 'mynodeapp:latest'
         ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
     }
     stages {
@@ -24,7 +25,7 @@ pipeline {
                     shortCommitHash = gitCommitHash.take(7)
                     // calculate a sample version tag
                     VERSION = shortCommitHash
-                    env.IMAGE = 'mynodeapp:latest4'
+                    IMAGE = 'mynodeapp:latest4'
                     // set the build display name
                     currentBuild.displayName = "#${BUILD_ID}-${VERSION}" 
                 }
