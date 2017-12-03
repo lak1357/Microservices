@@ -34,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Start Building Dockerfile........'
-                echo ${VERSION}
+                sh 'echo ${VERSION}'
                 sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${IMAGE} ECS/mynodeapp'
             }
         }
