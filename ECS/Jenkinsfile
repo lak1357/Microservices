@@ -17,6 +17,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Push Image to Registry.......'
+                sh 'docker push 936825406282.dkr.ecr.ap-southeast-1.amazonaws.com/mynodeapp:latest'
             }
         }
     }
