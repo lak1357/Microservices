@@ -1,4 +1,10 @@
 pipeline {
+
+    options
+    {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+    }
+
     agent any
 
     environment 
@@ -18,7 +24,7 @@ pipeline {
                     shortCommitHash = gitCommitHash.take(7)
                     // calculate a sample version tag
                     VERSION = shortCommitHash
-                    IMAGE = 'mynodeapp:latest4'
+                    env.IMAGE = 'mynodeapp:latest4'
                     // set the build display name
                     currentBuild.displayName = "#${BUILD_ID}-${VERSION}" 
                 }
@@ -28,6 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Start Building Dockerfile........'
+                echo ${VERSION}
                 sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${IMAGE} ECS/mynodeapp'
             }
         }
