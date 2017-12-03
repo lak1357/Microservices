@@ -1,24 +1,51 @@
 pipeline {
     agent any
 
+    environment 
+    {
+        VERSION = 'latest'
+        PROJECT = 'mynodeapp'
+        IMAGE = 'mynodeapp:latest'
+        ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
+        ECRCRED = 'ecr:eu-central-1:tap_ecr'
+    }
     stages {
+
+        stage('Build preparations')
+        {
+            steps
+            {
+                script 
+                {
+                    // calculate GIT lastest commit short-hash
+                    gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    shortCommitHash = gitCommitHash.take(7)
+                    // calculate a sample version tag
+                    VERSION = shortCommitHash
+                    // set the build display name
+                    currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
+                    IMAGE = "$PROJECT:$VERSION"
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Start Building Dockerfile........'
-                sh 'docker build -f ECS/mynodeapp/Dockerfile -t mynodeapp ECS/mynodeapp'
+                sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${IMAGE} ECS/mynodeapp'
             }
         }
         stage('Tag') {
             steps {
                 echo 'Tag Image........'
-                sh 'docker tag mynodeapp:latest 936825406282.dkr.ecr.ap-southeast-1.amazonaws.com/mynodeapp:latest'
+                sh 'docker tag ${IMAGE} ${ECRLOCATION}/${IMAGE}'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Push Image to Registry.......'
                 sh("eval \$(aws ecr get-login --no-include-email --region ap-southeast-1 | sed 's|https://||')")
-                sh 'docker push 936825406282.dkr.ecr.ap-southeast-1.amazonaws.com/mynodeapp:latest'
+                sh 'docker push ${ECRLOCATION}/${IMAGE}'
             }
         }
     }
