@@ -3,9 +3,9 @@ pipeline {
 
     environment 
     {
-        VERSION = 'latest2'
+        VERSION = 'latest'
         PROJECT = 'mynodeapp'
-        IMAGE = 'mynodeapp:latest3'
+        IMAGE = 'mynodeapp:latest'
         ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
     }
     stages {
@@ -20,7 +20,7 @@ pipeline {
                     VERSION = shortCommitHash
                     // set the build display name
                     currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
-                    IMAGE = "#${PROJECT}:${VERSION}"
+                    IMAGE = "$PROJECT:$VERSION"
                 }
             }
         }
