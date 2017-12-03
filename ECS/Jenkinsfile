@@ -6,7 +6,7 @@ pipeline {
         VERSION = 'latest'
         PROJECT = 'mynodeapp'
         IMAGE = 'mynodeapp:latest'
-        ECRLOCATION = '936825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
+        ECRLOCATION = '36825406282.dkr.ecr.ap-southeast-1.amazonaws.com'
     }
     stages {
 
