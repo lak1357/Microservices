@@ -26,7 +26,7 @@ pipeline {
                     shortCommitHash = gitCommitHash.take(7)
                     // calculate a sample version tag
                     VERSION = shortCommitHash
-                    env.IMAGE = 'mynodeapp:latest4'
+                    IMAGE = "$PROJECT:$VERSION"
                     // set the build display name
                     currentBuild.displayName = "#${BUILD_ID}-${VERSION}" 
                 }
@@ -35,22 +35,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Start Building Dockerfile........'
-                sh 'echo ${VERSION}'
-                sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${env.IMAGE} ECS/mynodeapp'
+                script
+                {
+                    sh 'echo ${VERSION}'
+                    sh 'docker build -f ECS/mynodeapp/Dockerfile -t ${env.IMAGE} ECS/mynodeapp'
+                }
             }
         }
         stage('Tag') {
             steps {
-                echo 'Tag Image........'
-                sh 'docker tag ${IMAGE} ${ECRLOCATION}/${IMAGE}'
+                script
+                {
+                    sh 'docker tag ${IMAGE} ${ECRLOCATION}/${IMAGE}'
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Push Image to Registry.......'
-                sh("eval \$(aws ecr get-login --no-include-email --region ap-southeast-1 | sed 's|https://||')")
-                sh 'docker push ${ECRLOCATION}/${IMAGE}'
+            script
+                {
+                    echo 'Push Image to Registry.......'
+                    sh("eval \$(aws ecr get-login --no-include-email --region ap-southeast-1 | sed 's|https://||')")
+                    sh 'docker push ${ECRLOCATION}/${IMAGE}'
+                }
             }
         }
     }
