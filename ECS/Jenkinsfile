@@ -18,7 +18,7 @@ pipeline {
                     shortCommitHash = gitCommitHash.take(7)
                     // calculate a sample version tag
                     VERSION = shortCommitHash
-                    env.IMAGE = "$PROJECT:$VERSION"
+                    IMAGE = 'mynodeapp:latest4'
                     // set the build display name
                     currentBuild.displayName = "#${BUILD_ID}-${VERSION}" 
                 }
