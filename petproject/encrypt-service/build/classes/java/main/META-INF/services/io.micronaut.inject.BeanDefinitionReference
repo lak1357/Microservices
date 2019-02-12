@@ -1,0 +1,3 @@
+encrypt.service.$EncryptServiceDefinitionClass
+encrypt.service.$EncryptControllerDefinitionClass
+encrypt.service.$EncryptClient$InterceptedDefinitionClass
