@@ -1,5 +1,6 @@
-package encrypt.service.model;
+package gateway.client.encryptservice;
 
+import gateway.client.encryptservice.model.Message;
 import io.micronaut.http.annotation.Get;
 import io.reactivex.Single;
 

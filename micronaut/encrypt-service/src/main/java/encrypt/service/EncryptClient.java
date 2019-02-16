@@ -12,3 +12,4 @@ public interface EncryptClient {
     Single<Message> encrypt(String text);
 
 }
+

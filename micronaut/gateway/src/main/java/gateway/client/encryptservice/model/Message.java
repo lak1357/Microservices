@@ -1,4 +1,4 @@
-package encrypt.service.model;
+package gateway.client.encryptservice.model;
 
 public class Message {
 

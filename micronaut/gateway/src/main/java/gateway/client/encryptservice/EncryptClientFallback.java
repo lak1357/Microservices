@@ -1,5 +1,6 @@
-package encrypt.service.model;
+package gateway.client.encryptservice;
 
+import gateway.client.encryptservice.model.Message;
 import io.micronaut.retry.annotation.Fallback;
 import io.micronaut.retry.annotation.Retryable;
 import io.reactivex.Single;
