@@ -1,4 +1,4 @@
-package com.mitrai.kakfaex1;
+package com.mitrai.kafkaex;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class KakfaEx1ApplicationTests {
+public class KafkaSampleApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
+		
 	}
 
 }

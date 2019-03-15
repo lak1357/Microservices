@@ -1,13 +1,13 @@
-package com.mitrai.kakfaex1;
+package com.mitrai.kafkaex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KakfaEx1Application {
+public class KafkaSampleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KakfaEx1Application.class, args);
+		SpringApplication.run(KafkaSampleApplication.class, args);
 	}
 
 }
