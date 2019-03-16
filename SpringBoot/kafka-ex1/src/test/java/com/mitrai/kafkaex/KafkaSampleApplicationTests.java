@@ -11,8 +11,7 @@ public class KafkaSampleApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		
-		
+
 	}
 
 }
