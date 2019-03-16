@@ -1,5 +1,7 @@
 package com.mitrai.kafkaex.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +18,9 @@ public class MessageController {
 	KafkaTemplate<String, Message> jsonKafkaTemplate;
 
 	@PostMapping
-	public Response sendMessage(@RequestBody final Message message) {
-
-		if (message != null && message.getTopic() != null && message.getTopic().trim().length() > 0) {
-			jsonKafkaTemplate.send(message.getTopic(), message);
-		}
+	public Response sendMessage(@Valid @RequestBody final Message message) {
 
 		return new Response("message sent successfully");
-
 	}
 
 }

@@ -1,9 +1,14 @@
 package com.mitrai.kafkaex.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Message {
 
+	@NotEmpty
 	private String messageId;
+	@NotEmpty
 	private String message;
+	@NotEmpty
 	private String topic;
 
 	public Message(String messageId, String message, String topic) {
