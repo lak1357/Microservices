@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+	//id "io.franzbecker.gradle-lombok" version "1.13"
+	id "org.flywaydb.flyway" version "5.0.7"
+}
+
+//lombok {
+//    version = "1.18.2"
+//    sha256 = ""
+//}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.mitra'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+    jcenter()
+    maven { url "https://repo.spring.io/libs-milestone" }
+    maven { url "https://dl.bintray.com/eventuateio-oss/eventuate-maven-release"}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile "io.eventuate.client.java:eventuate-client-java:${eventuateClientVersion}"
+	compile "io.eventuate.client.java:eventuate-client-java-spring:${eventuateClientVersion}"
+    compile "io.eventuate.local.java:eventuate-local-java-jdbc:${eventuateLocalVersion}"
+    compile "io.eventuate.tram.core:eventuate-tram-messaging:${eventuateTramVersion}"
+    compile "io.eventuate.tram.core:eventuate-tram-jdbc-kafka:${eventuateTramVersion}"
+    compile "com.google.collections:google-collections:1.0"
+    compile "net.logstash.logback:logstash-logback-encoder:5.1"
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
