@@ -1,19 +1,16 @@
-package com.mitra.eventuatedemo.event;
+package com.mitra.eventuatedemo.model;
 
-import io.eventuate.Event;
-
-public class CreateCustomerEvent implements Event {
+public class Customer {
 
 	private String name;
 	private String phoneNumber;
 	private String address;
 
-	public CreateCustomerEvent() {
+	public Customer() {
 
 	}
 
-	public CreateCustomerEvent(String name, String phoneNumber, String address) {
-		super();
+	public Customer(String name, String phoneNumber, String address) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.address = address;

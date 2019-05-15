@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.mitra.eventuatedemo.cmd.EventCommand;
-import com.mitra.eventuatedemo.eventhandler.CustomerAggregateEvents;
 import com.mitra.eventuatedemo.service.CustomerService;
 
 import io.eventuate.AggregateRepository;
@@ -28,8 +27,4 @@ public class DemoBackendConfiguration {
 		return new CustomerService(aggregateRepository);
 	}
 
-	@Bean
-	public CustomerAggregateEvents customerAggregateEvents() {
-		return new CustomerAggregateEvents();
-	}
 }

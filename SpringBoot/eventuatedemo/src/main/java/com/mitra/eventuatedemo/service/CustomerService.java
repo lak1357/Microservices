@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mitra.eventuatedemo.EventAggregate;
 import com.mitra.eventuatedemo.cmd.CreateCustomerEventCommand;
 import com.mitra.eventuatedemo.cmd.EventCommand;
-import com.mitra.eventuatedemo.cmd.GetCustomerEventCommand;
+import com.mitra.eventuatedemo.model.Customer;
 
 import io.eventuate.AggregateRepository;
 import io.eventuate.SaveOptions;
@@ -21,14 +21,15 @@ public class CustomerService {
 		this.aggregateRepository = aggregateRepository;
 	}
 
-	public String createCustomer() {
+	public String createCustomer(Customer customer) {
 
 		try {
 			return aggregateRepository
-					.save(new CreateCustomerEventCommand("Lakshitha", "+94661114322", "Colombo"),
+					.save(new CreateCustomerEventCommand(customer.getName(), customer.getPhoneNumber(),
+							customer.getAddress()),
 							Optional.of(new SaveOptions().withEventMetadata(
 									ImmutableMap.of("eventTime", String.valueOf(new Date().getTime())))))
-					.get().getEntityVersion().asString();
+					.get().getEntityId();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
@@ -36,19 +37,16 @@ public class CustomerService {
 		return "booo";
 	}
 
-	public String getCustomer() {
+	public Customer getCustomer(String entityId) {
 
 		try {
-			return aggregateRepository
-					.save(new GetCustomerEventCommand("laktest@gmail.com"),
-							Optional.of(new SaveOptions().withEventMetadata(
-									ImmutableMap.of("eventTime", String.valueOf(new Date().getTime())))))
-					.get().getEntityVersion().asString();
+			return aggregateRepository.find(entityId).get().getEntity().getCustomer();
+
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
 
-		return "booo";
+		return new Customer("", "", "");
 	}
 
 }
