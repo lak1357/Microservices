@@ -2,6 +2,7 @@ package com.mitra.orderses.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,17 @@ import com.mitra.orderses.event.OrderPlaced;
 public class EventProducer {
 
 	@Autowired
-	private KafkaTemplate<String, CoffeeEvent> kafkaTemplate;
+	private KafkaTemplate<String, CoffeeEvent> eventKafkaTemplate;
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@Value("${kafka.topic.order}")
 	private String orderTopic;
 
 	public void publish(OrderPlaced orderPlaced) {
-		kafkaTemplate.send(orderTopic, orderPlaced);
+		eventKafkaTemplate.send(orderTopic, orderPlaced);
+		applicationEventPublisher.publishEvent(orderPlaced);
 	}
 
 }

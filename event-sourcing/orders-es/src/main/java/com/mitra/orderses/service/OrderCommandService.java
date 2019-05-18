@@ -12,8 +12,10 @@ public class OrderCommandService {
 	@Autowired
 	private EventProducer eventProducer;
 
+
+
 	public void placeOrder(final OrderInfo orderInfo) {
-		eventProducer.publish(new OrderPlaced(orderInfo));
+		eventProducer.publish(new OrderPlaced(this, orderInfo));
 	}
 
 }
