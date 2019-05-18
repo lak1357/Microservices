@@ -15,7 +15,7 @@ public class OrderCommandService {
 
 
 	public void placeOrder(final OrderInfo orderInfo) {
-		eventProducer.publish(new OrderPlaced(this, orderInfo));
+		eventProducer.publish(new OrderPlaced(orderInfo));
 	}
 
 }

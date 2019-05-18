@@ -8,8 +8,11 @@ public class OrderPlaced extends CoffeeEvent {
 
 	private OrderInfo orderInfo;
 
-	public OrderPlaced(Object source, OrderInfo orderInfo) {
-		super(source);
+	public OrderPlaced() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public OrderPlaced(OrderInfo orderInfo) {
 		this.orderInfo = orderInfo;
 	}
 

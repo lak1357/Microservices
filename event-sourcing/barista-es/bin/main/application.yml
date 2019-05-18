@@ -1,0 +1,12 @@
+server:
+  port: 8085
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+    producer:
+      bootstrap-servers: localhost:9092
+kafka:
+  topic:
+    order: order
